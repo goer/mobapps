@@ -1,0 +1,69 @@
+﻿
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-assertive">
+            <ion-nav-back-button class="no-text">
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-header-bar class="expanded">
+            <img src="img/sansa-2.jpg" class="avatar motion spin fade">
+            <div class="menu-bottom">
+                Sansa Siregar <br>
+                <span style="font-weight: normal;font-size: 12px">
+                    <i class="fa fa-credit-card"></i>
+                    Saldo : Rp. 13.000,- | 1200 Poin
+                </span>    
+            </div>
+        </ion-header-bar>
+        <ion-content class="stable-bg has-expanded-header">
+            <ion-list>
+                <!-- <ion-item nav-clear menu-close href="#/app/angsuran">
+                    <i class="fa fa-hospital-o"></i> Angsuran
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/bpjs-list">
+                    <i class="fa fa-plus-square"></i> BPJS
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/tagihan">
+                    <i class="fa fa-money"></i> Tagihan
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/pulsa">
+                    <i class="fa fa-mobile"></i> Pulsa
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/cc">
+                    <i class="fa fa-credit-card-alt"></i> Tagihan Kartu Kredit
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/information">
+                    <i class="fa fa-info-circle"></i> Informasi
+                </ion-item> -->
+
+                <ion-item nav-clear menu-close href="#/app/information">
+                    <i class="fa fa-credit-card-alt"></i> Pembayaran
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/information">
+                    <i class="fa fa-credit-card"></i> Pembelian
+                </ion-item>
+            </ion-list>
+            <hr>
+            <ion-list>  
+                <ion-item nav-clear menu-close href="#/app/tukarpoin">
+                    <i class="fa fa-gift"></i> Tukar Poin
+                </ion-item>
+            </ion-list>
+            <hr>
+            <ion-list>
+                <ion-item nav-clear menu-close href="#/app/profile">
+                    <i class="fa fa-user"></i> Akun
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/login">
+                    <i class="fa fa-sign-out"></i> Keluar
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
