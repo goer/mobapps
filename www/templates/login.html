@@ -31,16 +31,17 @@
             <div class="list">
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Username</span>
-                    <input type="text" placeholder="Username">
+                    <input type="text" placeholder="Username" ng-model="data.username">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Password</span>
-                    <input type="text" placeholder="Password">
+                    <input type="password" placeholder="Password" ng-model="data.password">
                 </label>
             </div>
             <div class="padding">
-                <a href="#/app/profile">
-                <button class="button col-md-12 button-block button-assertive waves-effect waves-button waves-light" >Masuk</button></a>
+                <!-- <a href="#/app/profile"> -->
+                    <button class="button col-md-12 button-block button-assertive waves-effect waves-button waves-light" ng-click="login()">Masuk</button>
+                <!-- </a> -->
                 <div class="text-center">
                     Or
                 </div>
