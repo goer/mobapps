@@ -32,7 +32,7 @@
                 <hr>
                 <ion-item nav-clear menu-close href="#/app/information">
                     <i class="fa fa-information"></i> informasi
-                </ion-item>
+                </ion-item>{{window.localStorage.getItem("password")}}
             </ion-list>
             <div ng-class="isLoggedInClass()">
                 <ion-list>

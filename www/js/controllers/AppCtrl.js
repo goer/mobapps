@@ -1,4 +1,4 @@
-﻿app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout,$location) {
+﻿app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -53,18 +53,21 @@
     };
     $scope.data = {};
     $scope.login = function() {
-        
+
         var username = 'admin@admin.com';
         var password = '12345';
+        $scope.options = $scope.options || {};
         if (($scope.data.username == username) && ($scope.data.password == password)) {
             window.localStorage.setItem("username", username);
             window.localStorage.setItem("password", password);
             console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
             // $state.go('app.profile');
             window.location = "#/app/profile";
-            // $location.path('/app/profile');
-            // $window.location.href = '#/app/profile';
-            // window.location.assign("templates/profile.html");
+            // $ionicNavBarDelegate.showBackButton(false);
+            // $scope.options.hideBackButton = true;
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
         } else {
             var alertPopup = $ionicPopup.alert({
                 title: 'Login Gagal',
@@ -82,23 +85,28 @@
     };
 
     $scope.isLoggedInClass = function() {
-        if (window.localStorage.getItem("username") !== undefined && window.localStorage.getItem("password") !== undefined) {
-            return 'hidden';
-        } else {
+        if ((window.localStorage.getItem("username")) !== null && window.localStorage.getItem("password") !== null) {
             return '';
+        } else {
+            return 'hidden';
+
         }
     };
 
     $scope.isLoggedInClassLogin = function() {
-        if (window.localStorage.getItem("username") !== undefined && window.localStorage.getItem("password") !== undefined) {
-            return '';
-        } else {
+        if (window.localStorage.getItem("username") !== null && window.localStorage.getItem("password") !== null) {
             return 'hidden';
+        } else {
+            return '';
         }
     };
 
     $scope.logout = function() {
         window.localStorage.removeItem("username");
         window.localStorage.removeItem("password");
+        window.location = "#/app/information";
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
     };
 });

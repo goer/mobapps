@@ -232,8 +232,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
+
+    .state('app.detailtukar', {
+        url: '/detailtukar',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/detailtukar.html',
+                controller: 'ExtensionsCtrl'
+            }
+        }
+    })
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/information');
+    // $urlRouterProvider.otherwise('/app/information');
+    $urlRouterProvider.otherwise('/app/tukar');
 });
