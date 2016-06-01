@@ -128,11 +128,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
-    .state('app.tagihan', {
-        url: '/tagihan',
+    .state('app.speedy', {
+        url: '/speedy',
         views: {
             'menuContent': {
-                templateUrl: 'templates/tagihan.html'
+                templateUrl: 'templates/speedy.html'
             }
         }
     })
@@ -183,21 +183,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('app.cc-input', {
-        url: '/cc-input',
+    .state('app.pln', {
+        url: '/pln',
         views: {
             'menuContent': {
-                templateUrl: 'templates/cc-input.html',
+                templateUrl: 'templates/pln.html',
                 controller: 'ExtensionsCtrl'
             }
         }
     })
 
-    .state('app.bayar', {
-        url: '/bayar',
+    .state('app.fmedia', {
+        url: '/fmedia',
         views: {
             'menuContent': {
-                templateUrl: 'templates/bayar.html',
+                templateUrl: 'templates/fmedia.html',
                 controller: 'ExtensionsCtrl'
             }
         }
@@ -222,8 +222,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
+
+    .state('app.tukar', {
+        url: '/tukar',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/tukar.html',
+                controller: 'ExtensionsCtrl'
+            }
+        }
+    })
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/pembelian');
+    $urlRouterProvider.otherwise('/app/tukar');
 });
