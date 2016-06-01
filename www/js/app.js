@@ -38,15 +38,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('login', {
+    .state('app.login', {
         url: '/login',
-        templateUrl: 'templates/login.html',
-        controller: 'AppCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/login.html',
+                controller: 'ListsCtrl'
+            }
+        }
     })
-     .state('register', {
+     .state('app.register', {
         url: '/register',
-        templateUrl: 'templates/register.html',
-        controller: 'AppCtrl'
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/register.html',
+                controller: 'ListsCtrl'
+            }
+        }
     })
 
     .state('app.ink', {
@@ -194,8 +202,28 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
+
+    .state('app.pembayaran', {
+        url: '/pembayaran',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/pembayaran.html',
+                controller: 'ExtensionsCtrl'
+            }
+        }
+    })
+
+    .state('app.pembelian', {
+        url: '/pembelian',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/pembelian.html',
+                controller: 'ExtensionsCtrl'
+            }
+        }
+    })
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/app/pembelian');
 });
