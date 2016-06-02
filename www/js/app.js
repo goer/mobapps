@@ -242,6 +242,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
+
+    .state('app.codetukar', {
+        url: '/codetukar',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/codetukar.html',
+                controller: 'ExtensionsCtrl'
+            }
+        }
+    })
     ;
 
     // if none of the above states are matched, use this as the fallback
