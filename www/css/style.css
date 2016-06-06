@@ -52,6 +52,7 @@ p {
 
 .menu .bar.bar-header.expanded {
     background-image: url('../img/Company-accounts.jpg');
+    background-image: url('../img/finance.png');
     background-size: 120%;
     background-position: 0%;
     transition: all .5s ease-in-out;
@@ -213,4 +214,8 @@ p {
 }
 .hidden {
     display: none;
+}
+
+.menu-bottom {
+    bottom: 3px;
 }
