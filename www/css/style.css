@@ -52,7 +52,7 @@ p {
 
 .menu .bar.bar-header.expanded {
     /*background-image: url('../img/Company-accounts.jpg');*/
-    /*background-image: url('../img/finance.png');*/
+    background-image: url('../img/blurred-background-2.jpg');
     background-color: white;
     background-size: 120%;
     background-position: 0%;
@@ -139,7 +139,7 @@ p {
 
 .code {
     color: #333;
-    font-family: monospace;
+    /*font-family: monospace;*/
     padding: 10px;
     white-space: pre;
 }
