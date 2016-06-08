@@ -1,4 +1,4 @@
-﻿app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory) {
+﻿app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -59,6 +59,7 @@
         $scope.options = $scope.options || {};
         if (($scope.data.username == username) && ($scope.data.password == password)) {
             window.localStorage.setItem("username", username);
+            window.localStorage.setItem("user.name", 'Sansa Siregar');
             window.localStorage.setItem("password", password);
             console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
             // $state.go('app.profile');
@@ -109,4 +110,29 @@
             disableBack: true
         });
     };
+
+    $scope.fbLogin = function () {
+        ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+            function (response) {
+                if (response.status === 'connected') {
+                    console.log('Facebook login succeeded');
+                    $scope.closeLogin();
+                } else {
+                    alert('Facebook login failed');
+                }
+            });
+    };
+
+    ngFB.api({
+        path: '/me',
+        params: {fields: 'id,name'}
+    }).then(
+        function (user) {
+            $scope.user = user;
+            console.log(user);
+        },
+        function (error) {
+            alert('Facebook error: ' + error.error_description);
+        });
+
 });

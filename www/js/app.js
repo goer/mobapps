@@ -3,9 +3,10 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ionic-material']);
+var app = angular.module('starter', ['ionic', 'ionic-material','ngOpenFB']);
 
-app.run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform,ngFB) {
+    ngFB.init({appId: '481906065341784'});
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -248,6 +249,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         views: {
             'menuContent': {
                 templateUrl: 'templates/codetukar.html',
+                controller: 'ExtensionsCtrl'
+            }
+        }
+    })
+    .state('app.oauthcallback', {
+        url: '/oauthcallback',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/oauthcallback.html',
                 controller: 'ExtensionsCtrl'
             }
         }
