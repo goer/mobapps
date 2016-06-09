@@ -1,4 +1,5 @@
-﻿app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
+﻿// app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
+    app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -7,6 +8,10 @@
         navIcons.addEventListener('click', function() {
             this.classList.toggle('active');
         });
+    }
+    
+    $scope.slideHasChanged = function ($index){
+
     }
 
     // .fromTemplate() method
@@ -111,28 +116,28 @@
         });
     };
 
-    $scope.fbLogin = function () {
-        ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
-            function (response) {
-                if (response.status === 'connected') {
-                    console.log('Facebook login succeeded');
-                    $scope.closeLogin();
-                } else {
-                    alert('Facebook login failed');
-                }
-            });
-    };
+    // $scope.fbLogin = function () {
+    //     ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+    //         function (response) {
+    //             if (response.status === 'connected') {
+    //                 console.log('Facebook login succeeded');
+    //                 $scope.closeLogin();
+    //             } else {
+    //                 alert('Facebook login failed');
+    //             }
+    //         });
+    // };
 
-    ngFB.api({
-        path: '/me',
-        params: {fields: 'id,name'}
-    }).then(
-        function (user) {
-            $scope.user = user;
-            console.log(user);
-        },
-        function (error) {
-            alert('Facebook error: ' + error.error_description);
-        });
+    // ngFB.api({
+    //     path: '/me',
+    //     params: {fields: 'id,name'}
+    // }).then(
+    //     function (user) {
+    //         $scope.user = user;
+    //         console.log(user);
+    //     },
+    //     function (error) {
+    //         alert('Facebook error: ' + error.error_description);
+    //     });
 
 });
