@@ -220,6 +220,7 @@ p {
 .menu-bottom {
     bottom: 3px;
 }
+<<<<<<< HEAD
 
 .bar-header{
   padding: 3px 0px;
@@ -235,4 +236,8 @@ p {
 }
 .has-header{
   /*top:80px */
+}
+
+.list .item.item-bg-image {
+    min-height: 180px;
 }

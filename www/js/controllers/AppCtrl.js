@@ -1,5 +1,9 @@
 ﻿// app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
+<<<<<<< HEAD
 app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory,$http) {
+=======
+    app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory) {
+>>>>>>> beb6d1fd25459a968fbf809a24e9c9cbdf6b7662
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -8,6 +12,10 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         navIcons.addEventListener('click', function() {
             this.classList.toggle('active');
         });
+    }
+    
+    $scope.slideHasChanged = function ($index){
+
     }
 
     // .fromTemplate() method
@@ -125,17 +133,17 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         });
     };
 
-    $scope.fbLogin = function () {
-        // ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
-        //     function (response) {
-        //         if (response.status === 'connected') {
-        //             console.log('Facebook login succeeded');
-        //             $scope.closeLogin();
-        //         } else {
-        //             alert('Facebook login failed');
-        //         }
-        //     });
-    };
+    // $scope.fbLogin = function () {
+    //     ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+    //         function (response) {
+    //             if (response.status === 'connected') {
+    //                 console.log('Facebook login succeeded');
+    //                 $scope.closeLogin();
+    //             } else {
+    //                 alert('Facebook login failed');
+    //             }
+    //         });
+    // };
 
     // ngFB.api({
     //     path: '/me',

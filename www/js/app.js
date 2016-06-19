@@ -5,9 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // var app = angular.module('starter', ['ionic', 'ionic-material','ngOpenFB']);
 var app = angular.module('starter', ['ionic', 'ionic-material']);
-
 // app.run(function ($ionicPlatform,ngFB) {
-    app.run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform) {
     // ngFB.init({appId: '481906065341784'});
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -255,11 +254,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('app.oauthcallback', {
-        url: '/oauthcallback',
+    .state('app.token', {
+        url: '/token',
         views: {
             'menuContent': {
-                templateUrl: 'templates/oauthcallback.html',
+                templateUrl: 'templates/token.html',
                 controller: 'ExtensionsCtrl'
             }
         }
