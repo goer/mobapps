@@ -1,6 +1,6 @@
 ﻿app.controller('SetupCtrl', function($scope, $stateParams) {
-    /* ionic.material.motion.pushDown({
-        selector: '.push-down'
+	
+    $http.post(link, {username : $scope.data.username}).then(function (res){
+        $scope.response = res.data;
     });
-    */
 });

@@ -220,3 +220,19 @@ p {
 .menu-bottom {
     bottom: 3px;
 }
+
+.bar-header{
+  padding: 3px 0px;
+  height: 50px 
+}
+
+.bar-header h1.title{
+  top:800px;
+  /*padding-top: 10px*/
+}
+.bar .title {
+    top:3px;
+}
+.has-header{
+  /*top:80px */
+}

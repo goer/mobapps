@@ -1,4 +1,5 @@
-﻿app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
+﻿// app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
+app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory,$http) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -54,27 +55,40 @@
     $scope.data = {};
     $scope.login = function() {
 
-        var username = 'admin@admin.com';
-        var password = '12345';
+        // var username = 'admin@admin.com';
+        // var password = '12345';
+        
+        var username = 'PPT1376541621';
+        var password = '23ntcdjy';
+        var link = "http://103.16.78.45/admin/index.php/api/partner/login";
+
         $scope.options = $scope.options || {};
-        if (($scope.data.username == username) && ($scope.data.password == password)) {
-            window.localStorage.setItem("username", username);
-            window.localStorage.setItem("user.name", 'Sansa Siregar');
-            window.localStorage.setItem("password", password);
-            console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
-            // $state.go('app.profile');
-            window.location = "#/app/profile";
-            // $ionicNavBarDelegate.showBackButton(false);
-            // $scope.options.hideBackButton = true;
-            $ionicHistory.nextViewOptions({
-                disableBack: true
-            });
-        } else {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login Gagal',
-                template: 'Masukan Username dan Password dengan benar'
-            });
-        }
+
+        $http.post(link, {u : $scope.data.username, p: $scope.data.password}).then(function (res){
+            if(res.status="200"){
+                if(null != res.email){
+                    window.localStorage.setItem("username", username);
+                    // window.localStorage.setItem("user.name", 'Sansa Siregar');
+                    window.localStorage.setItem("user.name", 'PPT1376541621');
+                    window.localStorage.setItem("password", password);
+                    window.location = "#/app/profile";
+                    $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });  
+                }else{
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Login Gagal',
+                        template: res.data.error
+                    });    
+                }
+            }else{
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Login Gagal',
+                    template: 'Masukan Username dan Password dengan benar'
+                });
+            }
+            console.log(res);
+        });
     }
 
     $scope.isLoggedIn = function() {
@@ -112,27 +126,27 @@
     };
 
     $scope.fbLogin = function () {
-        ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
-            function (response) {
-                if (response.status === 'connected') {
-                    console.log('Facebook login succeeded');
-                    $scope.closeLogin();
-                } else {
-                    alert('Facebook login failed');
-                }
-            });
+        // ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+        //     function (response) {
+        //         if (response.status === 'connected') {
+        //             console.log('Facebook login succeeded');
+        //             $scope.closeLogin();
+        //         } else {
+        //             alert('Facebook login failed');
+        //         }
+        //     });
     };
 
-    ngFB.api({
-        path: '/me',
-        params: {fields: 'id,name'}
-    }).then(
-        function (user) {
-            $scope.user = user;
-            console.log(user);
-        },
-        function (error) {
-            alert('Facebook error: ' + error.error_description);
-        });
+    // ngFB.api({
+    //     path: '/me',
+    //     params: {fields: 'id,name'}
+    // }).then(
+    //     function (user) {
+    //         $scope.user = user;
+    //         console.log(user);
+    //     },
+    //     function (error) {
+    //         alert('Facebook error: ' + error.error_description);
+    //     });
 
 });
