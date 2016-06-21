@@ -1,6 +1,11 @@
 app.controller('BuyCtrl', 
 	function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, $http) {
 		
+		var currentTime = new Date();
+	    var hours = currentTime.getHours();
+	    var minutes = currentTime.getMinutes();
+	    var seconds = currentTime.getSeconds();
+
 		$scope.buyPulsa = function (){
 			var url 	= "http://103.16.78.45/admin/index.php/api/routers/router"; 
 			var data 	= {
