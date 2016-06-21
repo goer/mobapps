@@ -1,9 +1,5 @@
 ﻿// app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory, ngFB) {
-<<<<<<< HEAD
 app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory,$http) {
-=======
-    app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPopup, $timeout, $location, $ionicHistory) {
->>>>>>> beb6d1fd25459a968fbf809a24e9c9cbdf6b7662
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -74,6 +70,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
 
         $http.post(link, {u : $scope.data.username, p: $scope.data.password}).then(function (res){
             if(res.status="200"){
+                console.log(res.email);
                 if(null != res.email){
                     window.localStorage.setItem("username", username);
                     // window.localStorage.setItem("user.name", 'Sansa Siregar');
@@ -95,7 +92,6 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
                     template: 'Masukan Username dan Password dengan benar'
                 });
             }
-            console.log(res);
         });
     }
 
