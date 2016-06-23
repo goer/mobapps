@@ -57,42 +57,93 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         return $scope.shownGroup === group;
     };
     $scope.data = {};
+    $scope.fullname = window.localStorage.getItem("username");
+    $scope.balance  = window.localStorage.getItem("balance");
     $scope.login = function() {
 
-        // var username = 'admin@admin.com';
-        // var password = '12345';
-        
         var username = 'PPT1376541621';
         var password = '23ntcdjy';
         var link = "http://103.16.78.45/admin/index.php/api/partner/login";
-
+        var data = {"u" : 'alfian.malik@gmail.com', "p": 'apaansih'};
+        var response = [];
+        response.push({"id": "371",
+                  "fullname": "alfian",
+                  "username": "alfian.malik@gmail.com",
+                  "password": "VVmk7Eqf6hmTw/Sj2D3mgQ==",
+                  "role": "CUSTOMER",
+                  "status": "1",
+                  "appkey": "9d90b796ddd5510f50ea1b5665fe07bb",
+                  "id_cust": "345",
+                  "id_owner": "2",
+                  "last_login": "2016-06-22 22:00:28",
+                  "id_parent": "0",
+                  "email": "alfian.malik@gmail.com",
+                  "phone": "085759782580",
+                  "name": "alfian",
+                  "pricingId": "1",
+                  "username_trx": "PPT1376541621",
+                  "password_trx": "5OfVhBSjdXZ7t0C2k9yGBw==",
+                  "store_name": "",
+                  "address": "Kuningan - Jawa Barat - Indonesia",
+                  "show_name": "1",
+                  "iv": "jc0VHIc2Vib1piibEZdkLQ==",
+                  "noerr": 0,
+                  "status" : 200
+                });
         $scope.options = $scope.options || {};
 
-        $http.post(link, {u : $scope.data.username, p: $scope.data.password}).then(function (res){
-            if(res.status="200"){
-                console.log(res.email);
-                if(null != res.email){
-                    window.localStorage.setItem("username", username);
-                    // window.localStorage.setItem("user.name", 'Sansa Siregar');
-                    window.localStorage.setItem("user.name", 'PPT1376541621');
-                    window.localStorage.setItem("password", password);
-                    window.location = "#/app/profile";
-                    $ionicHistory.nextViewOptions({
-                        disableBack: true
-                    });  
-                }else{
-                    var alertPopup = $ionicPopup.alert({
-                        title: 'Login Gagal',
-                        template: res.data.error
-                    });    
-                }
-            }else{
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Login Gagal',
-                    template: 'Masukan Username dan Password dengan benar'
-                });
-            }
-        });
+        var key = 'bWaYO1IvwO56S';
+        key = CryptoJS.enc.Utf8.parse(key+'\u0000\u0000\u0000')
+        var iv = CryptoJS.enc.Base64.parse('jc0VHIc2Vib1piibEZdkLQ=='); //nilai iv ada di response
+        
+        var plaintext = CryptoJS.AES.decrypt('VVmk7Eqf6hmTw/Sj2D3mgQ==', key, { iv: iv}); //kata merupakan password yg terenkripsi
+        var text = CryptoJS.enc.Utf8.stringify(plaintext);
+
+        var res = response[0];
+        
+        // $http({
+        //     method: 'POST',
+        //     url: link,
+        //     data: data,
+        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        // }).then(function(res){
+            // if(res.status="200"){
+            //     if(null != res.email){
+            //         window.localStorage.setItem("username", res.fullname);
+                    
+            //         window.localStorage.setItem("password", res.password);
+            //         window.localStorage.setItem("response", JSON.stringify(response[0]));
+
+            //         // window.localStorage.setItem("response", JSON.stringify(response[0]));
+            //         // console.log(JSON.parse(window.localStorage.getItem("response")).fullname);
+                        // var timestamp = Number(new Date()); 
+                        // var pass = CryptoJS.SHA1(res.username_trx+password+timestamp).toString();
+                        // var link_balance = 'http://103.16.78.45/admin/index.php/api/routers/balance/userid/'+res.username_trx+'/sign/'+pass+'/timestamp/'+timestamp;
+                        // $http({
+                        //     method: 'GET',
+                        //     url: link_balance,
+                        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                        // }).then(function(balance){
+                        //     console.log(balance.data.balance);
+                        //     window.localStorage.setItem("balance", balance.data.balance);
+                        // });
+            //         window.location = "#/app/profile";
+            //         $ionicHistory.nextViewOptions({
+            //             disableBack: true
+            //         });  
+            //     }else{
+            //         var alertPopup = $ionicPopup.alert({
+            //             title: 'Login Gagal',
+            //             template: res.data.error
+            //         });    
+            //     }
+            // }else{
+            //     var alertPopup = $ionicPopup.alert({
+            //         title: 'Login Gagal',
+            //         template: 'Masukan Username dan Password dengan benar'
+            //     });
+            // }
+        // });
     }
 
     $scope.isLoggedIn = function() {
@@ -122,6 +173,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
 
     $scope.logout = function() {
         window.localStorage.removeItem("username");
+        window.localStorage.removeItem("balance");
+        window.localStorage.removeItem("response");
         window.localStorage.removeItem("password");
         window.location = "#/app/information";
         $ionicHistory.nextViewOptions({
