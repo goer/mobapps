@@ -67,42 +67,9 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         var link = "http://103.16.78.45/admin/index.php/api/partner/login";
         // var data = {"u" : 'alfian.malik@gmail.com', "p": 'apaansih'};
         var data = {"u" : $scope.data.username, "p": $scope.data.password};
-        var response = [];
-        response.push({"id": "371",
-                  "fullname": "alfian",
-                  "username": "alfian.malik@gmail.com",
-                  "password": "VVmk7Eqf6hmTw/Sj2D3mgQ==",
-                  "role": "CUSTOMER",
-                  "status": "1",
-                  "appkey": "9d90b796ddd5510f50ea1b5665fe07bb",
-                  "id_cust": "345",
-                  "id_owner": "2",
-                  "last_login": "2016-06-22 22:00:28",
-                  "id_parent": "0",
-                  "email": "alfian.malik@gmail.com",
-                  "phone": "085759782580",
-                  "name": "alfian",
-                  "pricingId": "1",
-                  "username_trx": "PPT1376541621",
-                  "password_trx": "5OfVhBSjdXZ7t0C2k9yGBw==",
-                  "store_name": "",
-                  "address": "Kuningan - Jawa Barat - Indonesia",
-                  "show_name": "1",
-                  "iv": "jc0VHIc2Vib1piibEZdkLQ==",
-                  "noerr": 0,
-                  "status" : 200
-                });
+        
         $scope.options = $scope.options || {};
 
-        var key = 'bWaYO1IvwO56S';
-        key = CryptoJS.enc.Utf8.parse(key+'\u0000\u0000\u0000')
-        var iv = CryptoJS.enc.Base64.parse('jc0VHIc2Vib1piibEZdkLQ=='); //nilai iv ada di response
-        
-        var plaintext = CryptoJS.AES.decrypt('VVmk7Eqf6hmTw/Sj2D3mgQ==', key, { iv: iv}); //kata merupakan password yg terenkripsi
-        var text = CryptoJS.enc.Utf8.stringify(plaintext);
-
-        // var res = response[0];
-        
         $http({
             method: 'POST',
             url: link,
@@ -117,7 +84,6 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
                     window.localStorage.setItem("password", res.data.password);
                     window.localStorage.setItem("response", JSON.stringify(res.data));
 
-                    // window.localStorage.setItem("response", JSON.stringify(response[0]));
                     // window.localStorage.setItem("response", JSON.stringify(response[0]));
                     // console.log(JSON.parse(window.localStorage.getItem("response")).fullname);
                     
@@ -138,6 +104,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
                     $ionicHistory.nextViewOptions({
                         disableBack: true
                     });  
+                    $scope.fullname = window.localStorage.getItem("username");
+                    $scope.balance  = window.localStorage.getItem("balance");
                 }else{
                     var alertPopup = $ionicPopup.alert({
                         title: 'Login Gagal',
