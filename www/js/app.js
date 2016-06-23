@@ -267,6 +267,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     // if none of the above states are matched, use this as the fallback
     // $urlRouterProvider.otherwise('/app/information');
-    $urlRouterProvider.otherwise('/app/pulsa');
+    $urlRouterProvider.otherwise('/app/information');
     // $urlRouterProvider.otherwise('/app/tukar');
 });
