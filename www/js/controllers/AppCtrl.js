@@ -58,7 +58,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
     };
     $scope.data = {};
     $scope.fullname = window.localStorage.getItem("username");
-    $scope.balance  = window.localStorage.getItem("balance");
+    // $scope.balance  = window.localStorage.getItem("balance");
 
     $scope.login = function() {
 
@@ -98,6 +98,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
                             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                         }).then(function(balance){
                             window.localStorage.setItem("balance", balance.data.balance);
+                            $scope.balance = balance.data.balance;
                         });
 
                     window.location = "#/app/profile";
