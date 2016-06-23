@@ -64,7 +64,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         var username = 'PPT1376541621';
         var password = '23ntcdjy';
         var link = "http://103.16.78.45/admin/index.php/api/partner/login";
-        var data = {"u" : 'alfian.malik@gmail.com', "p": 'apaansih'};
+        // var data = {"u" : 'alfian.malik@gmail.com', "p": 'apaansih'};
+        var data = {"u" : $scope.data.username, "p": $scope.data.password};
         var response = [];
         response.push({"id": "371",
                   "fullname": "alfian",
@@ -99,51 +100,56 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         var plaintext = CryptoJS.AES.decrypt('VVmk7Eqf6hmTw/Sj2D3mgQ==', key, { iv: iv}); //kata merupakan password yg terenkripsi
         var text = CryptoJS.enc.Utf8.stringify(plaintext);
 
-        var res = response[0];
+        // var res = response[0];
         
-        // $http({
-        //     method: 'POST',
-        //     url: link,
-        //     data: data,
-        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        // }).then(function(res){
-            // if(res.status="200"){
-            //     if(null != res.email){
-            //         window.localStorage.setItem("username", res.fullname);
+        $http({
+            method: 'POST',
+            url: link,
+            data: data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(res){
+            console.log(res);
+            if(res.status="200"){
+                if(null != res.email){
+                    window.localStorage.setItem("username", res.fullname);
                     
-            //         window.localStorage.setItem("password", res.password);
-            //         window.localStorage.setItem("response", JSON.stringify(response[0]));
+                    window.localStorage.setItem("password", res.password);
+                    window.localStorage.setItem("response", res);
 
-            //         // window.localStorage.setItem("response", JSON.stringify(response[0]));
-            //         // console.log(JSON.parse(window.localStorage.getItem("response")).fullname);
-                        // var timestamp = Number(new Date()); 
-                        // var pass = CryptoJS.SHA1(res.username_trx+password+timestamp).toString();
-                        // var link_balance = 'http://103.16.78.45/admin/index.php/api/routers/balance/userid/'+res.username_trx+'/sign/'+pass+'/timestamp/'+timestamp;
-                        // $http({
-                        //     method: 'GET',
-                        //     url: link_balance,
-                        //     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                        // }).then(function(balance){
-                        //     console.log(balance.data.balance);
-                        //     window.localStorage.setItem("balance", balance.data.balance);
-                        // });
-            //         window.location = "#/app/profile";
-            //         $ionicHistory.nextViewOptions({
-            //             disableBack: true
-            //         });  
-            //     }else{
-            //         var alertPopup = $ionicPopup.alert({
-            //             title: 'Login Gagal',
-            //             template: res.data.error
-            //         });    
-            //     }
-            // }else{
-            //     var alertPopup = $ionicPopup.alert({
-            //         title: 'Login Gagal',
-            //         template: 'Masukan Username dan Password dengan benar'
-            //     });
-            // }
-        // });
+                    // window.localStorage.setItem("response", JSON.stringify(response[0]));
+                    // window.localStorage.setItem("response", JSON.stringify(response[0]));
+                    // console.log(JSON.parse(window.localStorage.getItem("response")).fullname);
+                    
+                        var d = new Date();
+                        var timestamp = d.getFullYear()+''+d.getMonth()+''+d.getDay()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
+
+                        var pass = CryptoJS.SHA1(res.username_trx+password+timestamp).toString();
+                        var link_balance = 'http://103.16.78.45/admin/index.php/api/routers/balance/userid/'+res.username_trx+'/sign/'+pass+'/timestamp/'+timestamp;
+                        $http({
+                            method: 'GET',
+                            url: link_balance,
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                        }).then(function(balance){
+                            window.localStorage.setItem("balance", balance.data.balance);
+                        });
+                        
+                    window.location = "#/app/profile";
+                    $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });  
+                }else{
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Login Gagal',
+                        template: res.data.error
+                    });    
+                }
+            }else{
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Login Gagal',
+                    template: 'Masukan Username dan Password dengan benar'
+                });
+            }
+        });
     }
 
     $scope.isLoggedIn = function() {
