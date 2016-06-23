@@ -59,6 +59,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
     $scope.data = {};
     $scope.fullname = window.localStorage.getItem("username");
     $scope.balance  = window.localStorage.getItem("balance");
+
     $scope.login = function() {
 
         var username = 'PPT1376541621';
@@ -110,11 +111,11 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
         }).then(function(res){
             console.log(res);
             if(res.status="200"){
-                if(null != res.email){
-                    window.localStorage.setItem("username", res.fullname);
+                if(null != res.data.email){
+                    window.localStorage.setItem("username", res.data.fullname);
                     
-                    window.localStorage.setItem("password", res.password);
-                    window.localStorage.setItem("response", res);
+                    window.localStorage.setItem("password", res.data.password);
+                    window.localStorage.setItem("response", JSON.stringify(res.data));
 
                     // window.localStorage.setItem("response", JSON.stringify(response[0]));
                     // window.localStorage.setItem("response", JSON.stringify(response[0]));
@@ -123,8 +124,8 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
                         var d = new Date();
                         var timestamp = d.getFullYear()+''+d.getMonth()+''+d.getDay()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
 
-                        var pass = CryptoJS.SHA1(res.username_trx+password+timestamp).toString();
-                        var link_balance = 'http://103.16.78.45/admin/index.php/api/routers/balance/userid/'+res.username_trx+'/sign/'+pass+'/timestamp/'+timestamp;
+                        var pass = CryptoJS.SHA1(res.data.username_trx+password+timestamp).toString();
+                        var link_balance = 'http://103.16.78.45/admin/index.php/api/routers/balance/userid/'+res.data.username_trx+'/sign/'+pass+'/timestamp/'+timestamp;
                         $http({
                             method: 'GET',
                             url: link_balance,
@@ -132,7 +133,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
                         }).then(function(balance){
                             window.localStorage.setItem("balance", balance.data.balance);
                         });
-                        
+
                     window.location = "#/app/profile";
                     $ionicHistory.nextViewOptions({
                         disableBack: true
