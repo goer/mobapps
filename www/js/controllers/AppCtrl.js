@@ -58,7 +58,7 @@ app.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $ionicPop
     };
     $scope.data = {};
     $scope.fullname = window.localStorage.getItem("username");
-    // $scope.balance  = window.localStorage.getItem("balance");
+    $scope.balance  = window.localStorage.getItem("balance");
 
     $scope.login = function() {
 
